@@ -73,6 +73,7 @@ const Guard = ({ children, authGuard, guestGuard }: GuardProps) => {
 export default function App(props: ExtendedAppProps) {
   const { Component, pageProps } = props
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { settings } = useSettings()
 
   // Variables

@@ -5,8 +5,7 @@ import Head from 'next/head'
 // import { useEffect } from 'react'
 import { useTheme } from '@emotion/react'
 import { useSettings } from 'src/hooks/useSettings'
-import { Box, Typography } from '@mui/material'
-import CustomTextField from 'src/components/text-field'
+
 
 export default function Home() {
 
@@ -22,9 +21,6 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Box sx={{ margin: 6, width: "200px" }}>
-        <CustomTextField id="outlined-controlled" label="Controlled" />
-      </Box>
     </>
   )
 }

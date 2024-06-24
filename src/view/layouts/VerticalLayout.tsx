@@ -1,14 +1,19 @@
 import * as React from 'react';
+import { NextPage } from 'next';
 
 // ** mui
-import { styled} from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import { mainListItems, secondaryListItems } from './ListItem';
-import { NextPage } from 'next';
+
+// ** Layout
+
+import ListVerticalLayout from './ListVerticalLayout';
+
+// ** Components
+import IconifyIcon from 'src/components/Icon';
 
 
 
@@ -48,7 +53,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 
-const VerticalLayout: NextPage<Tprops> = ({ open, toggleDrawer }) => {VerticalLayout
+const VerticalLayout: NextPage<Tprops> = ({ open, toggleDrawer }) => {
+
     return (
         <Drawer variant="permanent" open={open}>
             <Toolbar
@@ -60,14 +66,11 @@ const VerticalLayout: NextPage<Tprops> = ({ open, toggleDrawer }) => {VerticalLa
                 }}
             >
                 <IconButton onClick={toggleDrawer}>
+                    <IconifyIcon icon='mingcute:left-line' />
                 </IconButton>
             </Toolbar>
             <Divider />
-            <List component="nav">
-                {mainListItems}
-                <Divider sx={{ my: 1 }} />
-                {secondaryListItems}
-            </List>
+            <ListVerticalLayout />
         </Drawer>
 
     );

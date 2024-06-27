@@ -63,8 +63,10 @@ const LoginPage: NextPage<Tprops> = () => {
         })
 
     const defaultValues: TDefaultValue = {
-        email: '',
-        password: ''
+
+        "email": "admin@gmail.com",
+        "password": "123456789Kha@"
+
     }
     const {
         handleSubmit,
@@ -80,8 +82,8 @@ const LoginPage: NextPage<Tprops> = () => {
         if (!Object.keys(errors)?.length) {
             login({ ...data, rememberMe: isRemember })
         }
-        console.log('data', { data, errors }  )
-      
+        console.log('data', { data, errors })
+
     }
 
     return (

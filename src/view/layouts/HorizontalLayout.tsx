@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton'
 
 // components
 import IconifyIcon from 'src/components/Icon'
-import UserDropdown from 'src/components/user-dropdown'
+import UserDropdown from 'src/view/layouts/components/user-dropdown'
 import ModeToggle from './components/mode-toggle'
 import LanguageDropdown from './components/language-dropdown'
 

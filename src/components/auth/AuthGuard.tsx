@@ -12,6 +12,7 @@ import { clearLocalUserData } from 'src/helpers/storage'
 
 // ** Hooks
 import { useAuth } from 'src/hooks/useAuth'
+
 interface AuthGuardProps {
   children: ReactNode
   fallback: ReactElement | null
@@ -35,7 +36,7 @@ const AuthGuard = (props: AuthGuardProps) => {
       !window.localStorage.getItem(ACCESS_TOKEN) &&
       !window.localStorage.getItem(USER_DATA)
     ) {
-      if (router.asPath !== '/') {
+      if (router.asPath !== '/' && router.asPath !== "/login") {
         router.replace({
           pathname: '/login',
           query: { returnUrl: router.asPath }

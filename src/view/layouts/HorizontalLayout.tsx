@@ -12,10 +12,18 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 
 // components
-import IconifyIcon from 'src/components/Icon'
+import Icon from 'src/components/Icon'
 import UserDropdown from 'src/view/layouts/components/user-dropdown'
-import ModeToggle from './components/mode-toggle'
-import LanguageDropdown from './components/language-dropdown'
+import ModeToggle from 'src/view/layouts/components/mode-toggle'
+import LanguageDropdown from 'src/view/layouts/components/language-dropdown'
+
+// ** Hooks
+import { useAuth } from 'src/hooks/useAuth'
+import { Button } from '@mui/material'
+import { useRouter } from 'next/router'
+
+// config
+import { ROUTE_CONFIG } from 'src/configs/route'
 
 const drawerWidth: number = 240
 
@@ -35,7 +43,7 @@ const AppBar = styled(MuiAppBar, {
   zIndex: theme.zIndex.drawer + 1,
   backgroundColor:
     theme.palette.mode === 'light' ? theme.palette.customColors.lightPaperBg : theme.palette.customColors.darkPaperBg,
-  color: theme.palette.primary.main,
+    color: theme.palette.primary.main,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
@@ -51,6 +59,8 @@ const AppBar = styled(MuiAppBar, {
 }))
 
 const HorizontalLayout: NextPage<TProps> = ({ open, toggleDrawer, isHideMenu }) => {
+  const { user } = useAuth()
+  const router = useRouter()
 
   return (
     <AppBar position='absolute' open={open}>
@@ -71,7 +81,7 @@ const HorizontalLayout: NextPage<TProps> = ({ open, toggleDrawer, isHideMenu }) 
               ...(open && { display: 'none' })
             }}
           >
-            <IconifyIcon icon='ic:round-menu' />
+            <Icon icon='ic:round-menu' />
           </IconButton>
         )}
         <Typography component='h1' variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
@@ -79,7 +89,13 @@ const HorizontalLayout: NextPage<TProps> = ({ open, toggleDrawer, isHideMenu }) 
         </Typography>
         <LanguageDropdown />
         <ModeToggle />
-        <UserDropdown />
+        {user ? (
+          <UserDropdown />
+        ) : (
+          <Button variant='contained' sx={{ ml: 2, width: 'auto' }} onClick={() => router.push(ROUTE_CONFIG.LOGIN)}>
+            Sign In
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   )

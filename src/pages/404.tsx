@@ -2,8 +2,8 @@
 
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
-import { ReactNode } from 'react'
 import BlankLayout from 'src/view/layouts/BlankLayout'
+import { ReactNode } from 'react'
 
 const Error404 = () => {
   return (
@@ -17,4 +17,3 @@ const Error404 = () => {
 
 export default Error404
 Error404.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
-

@@ -1,7 +1,7 @@
 /**
  ** RGBA color to Hex color with / without opacity
  */
-export const rgbaToHex = (rgba: string, forceRemoveAlpha = false) => {
+ export const rgbaToHex = (rgba: string, forceRemoveAlpha = false) => {
   return (
     '#' +
     rgba

@@ -49,7 +49,7 @@ const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const initAuth = async (): Promise<void> => {
       const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)
-
+      console.log("storedToken",storedToken)
       if (storedToken) {
         setLoading(true)
         await instanceAxios
@@ -58,7 +58,9 @@ const AuthProvider = ({ children }: Props) => {
             setLoading(false)
             setUser({ ...response.data.data })
           })
-          .catch(() => {
+          .catch((e) => {
+      console.log("eeeeee",e)
+
             clearLocalUserData()
             setUser(null)
             setLoading(false)
@@ -79,6 +81,7 @@ const AuthProvider = ({ children }: Props) => {
     loginAuth({ email: params.email, password: params.password })
       .then(async response => {
         setLoading(false)
+        console.log("login-token", response)
         params.rememberMe
           ? setLocalUserData(
               JSON.stringify(response.data.user),

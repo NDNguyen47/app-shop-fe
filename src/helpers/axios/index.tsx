@@ -1,3 +1,4 @@
+// ** libraries
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 
@@ -40,12 +41,15 @@ const handleRedirectLogin = (router: NextRouter, setUser: (data: UserDataType | 
 
 const AxiosInterceptor: FC<TAxiosInterceptor> = ({ children }) => {
   const router = useRouter()
-  const { accessToken, refreshToken } = getLocalUserData()
   const { setUser } = useAuth()
 
   instanceAxios.interceptors.request.use(async config => {
+  const { accessToken, refreshToken,userData } = getLocalUserData()
+
+    console.log("accessToken", {accessToken,userData,refreshToken})
     if (accessToken) {
       const decodedAccessToken: any = jwtDecode(accessToken)
+      console.log("decodedAccessToken", {decodedAccessToken,refreshToken})
 
       if (decodedAccessToken?.exp > Date.now() / 1000) {
         config.headers['Authorization'] = `Bearer ${accessToken}`
@@ -73,16 +77,17 @@ const AxiosInterceptor: FC<TAxiosInterceptor> = ({ children }) => {
                 }
               })
               .catch(e => {
-                handleRedirectLogin(router, setUser)
+                 handleRedirectLogin(router, setUser)
               })
           } else {
-            handleRedirectLogin(router, setUser)
+           handleRedirectLogin(router, setUser)
           }
         } else {
-          handleRedirectLogin(router, setUser)
+           handleRedirectLogin(router, setUser)
         }
       }
     } else {
+      console.log("bug do ko có accesss tokens")
       handleRedirectLogin(router, setUser)
     }
 

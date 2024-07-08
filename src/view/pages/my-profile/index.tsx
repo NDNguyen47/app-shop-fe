@@ -42,6 +42,7 @@ import FallbackSpinner from 'src/components/fall-back'
 
 // ** Other
 import toast from 'react-hot-toast'
+import Spinner from 'src/components/spinner'
 
 type TProps = {}
 
@@ -165,7 +166,7 @@ const MyProfilePage: NextPage<TProps> = () => {
 
   return (
     <>
-      {loading || (isLoading && <FallbackSpinner />)}
+      {loading || (isLoading && <Spinner />)}
       <form onSubmit={handleSubmit(onSubmit)} autoComplete='off' noValidate>
         <Grid container>
           <Grid
@@ -316,7 +317,6 @@ const MyProfilePage: NextPage<TProps> = () => {
                 <Grid item md={6} xs={12}>
                   <Controller
                     control={control}
-                    name='address'
                     render={({ field: { onChange, onBlur, value } }) => (
                       <CustomTextField
                         autoFocus
@@ -328,11 +328,11 @@ const MyProfilePage: NextPage<TProps> = () => {
                         placeholder={t('enter_your_address')}
                       />
                     )}
+                    name='address'
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
                   <Controller
-                    name='city'
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
                       <CustomTextField
@@ -345,6 +345,7 @@ const MyProfilePage: NextPage<TProps> = () => {
                         placeholder={t('enter_your_city')}
                       />
                     )}
+                    name='city'
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>

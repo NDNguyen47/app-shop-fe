@@ -380,7 +380,6 @@ const MyProfilePage: NextPage<TProps> = () => {
             </Box>
           </Grid>
         </Grid>
-
         <Box sx={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'flex-end' }}>
           <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2 }}>
             {t('Update')}

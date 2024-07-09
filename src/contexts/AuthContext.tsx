@@ -21,6 +21,8 @@ import { clearLocalUserData, setLocalUserData } from 'src/helpers/storage'
 
 // instance axios
 import instanceAxios from 'src/helpers/axios'
+import toast from 'react-hot-toast'
+import { useTranslation } from 'react-i18next'
 
 // ** Defaults
 const defaultProvider: AuthValuesType = {
@@ -46,10 +48,11 @@ const AuthProvider = ({ children }: Props) => {
   // ** Hooks
   const router = useRouter()
 
+  const { t } = useTranslation()
+
   useEffect(() => {
     const initAuth = async (): Promise<void> => {
       const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)
-      console.log("storedToken",storedToken)
       if (storedToken) {
         setLoading(true)
         await instanceAxios
@@ -59,8 +62,7 @@ const AuthProvider = ({ children }: Props) => {
             setUser({ ...response.data.data })
           })
           .catch((e) => {
-      console.log("eeeeee",e)
-
+            console.log("e", e)
             clearLocalUserData()
             setUser(null)
             setLoading(false)
@@ -77,18 +79,18 @@ const AuthProvider = ({ children }: Props) => {
   }, [])
 
   const handleLogin = (params: LoginParams, errorCallback?: ErrCallbackType) => {
-    setLoading(true)
     loginAuth({ email: params.email, password: params.password })
       .then(async response => {
         setLoading(false)
         console.log("login-token", response)
         params.rememberMe
           ? setLocalUserData(
-              JSON.stringify(response.data.user),
-              response.data.access_token,
-              response.data.refresh_token
-            )
+            JSON.stringify(response.data.user),
+            response.data.access_token,
+            response.data.refresh_token
+          )
           : null
+        toast.success(t("login_success"));
         const returnUrl = router.query.returnUrl
         setUser({ ...response.data.user })
         const redirectURL = returnUrl && returnUrl !== '/' ? returnUrl : '/'
@@ -97,7 +99,6 @@ const AuthProvider = ({ children }: Props) => {
       })
 
       .catch(err => {
-        setLoading(false)
         if (errorCallback) errorCallback(err)
       })
   }

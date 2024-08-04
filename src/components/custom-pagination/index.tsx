@@ -3,7 +3,14 @@ import Box from '@mui/material/Box'
 import { MenuItem, Pagination, PaginationProps, Select, styled } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 
-// const StyleCustomGrid = styled(DataGrid)<DataGridProps>(({ theme }) => ({}))
+const StylePagination = styled(Pagination)<PaginationProps>(({ theme }) => ({
+  '& .MuiDataGrid-footerContainer': {
+    '.MuiBox-root': {
+      flex: 1,
+      width: '100% !important'
+    }
+  }
+}))
 
 type TProps = {
   page: number // ** current page
@@ -19,12 +26,12 @@ const CustomPagination = React.forwardRef((props: TProps, ref: Ref<any>) => {
   const { t } = useTranslation()
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', paddingLeft: "4px" }}>
       <Box>
-        <span>{t('Đang hiển thị')} </span>
+        <span>{t('Hiển thị')} </span>
         <span style={{ fontWeight: 'bold' }}>
           {page === 1 ? page : 1 + pageSize}
-          {' - '}
+          {'-'}
         </span>
         <span style={{ fontWeight: 'bold' }}>{page * pageSize} </span>
         <span>{t('trên')} </span>
@@ -32,7 +39,7 @@ const CustomPagination = React.forwardRef((props: TProps, ref: Ref<any>) => {
       </Box>
       <Box sx={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
         <Box sx={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-          <span>{t('Số dòng hiển thị')}</span>
+          <span>{t('Dòng hiển thị')}</span>
           <Select
             size='small'
             sx={{
@@ -53,7 +60,7 @@ const CustomPagination = React.forwardRef((props: TProps, ref: Ref<any>) => {
             })}
           </Select>
         </Box>
-        <Pagination color='primary' {...rests} />
+        <StylePagination color='primary' {...rests} />
       </Box>
     </Box>
   )

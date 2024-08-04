@@ -91,6 +91,10 @@ const UserDropdown = (props: TProps) => {
     router.push(ROUTE_CONFIG.CHANGE_PASSWORD)
     handleClose()
   }
+  const handleNavigateManageSystem = () => {
+    router.push(ROUTE_CONFIG.DASHBOARD)
+    handleClose()
+  }
 
   return (
     <React.Fragment>
@@ -189,6 +193,12 @@ const UserDropdown = (props: TProps) => {
           </Box>
         </Box>
         <Divider />
+        <MenuItem onClick={handleNavigateManageSystem}>
+          <Avatar>
+            <Icon icon='material-symbols-light:manage-accounts-outline' />
+          </Avatar>{' '}
+          {t('manage_system')}
+        </MenuItem>
         <MenuItem onClick={handleNavigateMyProfile}>
           <Avatar>
             <Icon icon='ph:user-thin' />

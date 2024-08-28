@@ -1,6 +1,6 @@
 {
     "Account": "Tài khoản",
-    "my_profile": "Hồ sơ của tôi",
+    "my_profile":"Hồ sơ của tôi",
     "enter_your_email": "Nhập email của bạn",
     "Role": "Nhóm vai trò",
     "enter_your_role": "Chọn vai trò của bạn",
@@ -15,16 +15,18 @@
     "upload_avatar": "Tải ảnh đại diện",
     "change_avatar": "Thay đổi ảnh đại diện",
     "Update": "Cập nhật",
-    "Logout": "Dang xuat",
-    "Change_password": " Thay doi mat khau ",
-    "The_email_or_password_wrong": "Email hoac mat khau cua ban bi sai",
-    "Login_success": " Dang Nhap Thanh cong ",
-    "manage_system": "Quan tri he thong ",
+    "Logout": "Đăng xuất",
+    "Change_password": "Thay đổi mật khẩu",
+    "the_email_or_password_wrong": "Email hoặc mật khẩu không chính xác",
+    "login_success": "Đăng nhập thành công",
+    "manage_system": "Quản trị hệ thống",
     "Name": "Tên",
     "Actions": "Thao tác",
     "Create": "Tạo",
     "Edit": "Sửa",
     "Delete": "Xóa",
     "required_field": "Trường này bắt buộc",
-    "create-role-success": "Tạo nhóm vai trò thành công"
+    "create-role-success": "Tạo nhóm vai trò thành công",
+    "title_delete_role": "Xác nhận xóa nhóm vai trò",
+    "confirm_delete_role": "Bạn có chắc xóa nhóm vai trò này?"
 }

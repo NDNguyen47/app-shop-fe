@@ -51,6 +51,7 @@ import { SettingsConsumer, SettingsProvider } from 'src/contexts/SettingsContext
 
 // axios instance
 import { AxiosInterceptor } from 'src/helpers/axios'
+import NoGuard from 'src/components/auth/NoGuard'
 
 type ExtendedAppProps = AppProps & {
   Component: NextPage
@@ -79,7 +80,7 @@ const Guard = ({ children, authGuard, guestGuard }: GuardProps) => {
   if (guestGuard) {
     return <GuestGuard fallback={<FallbackSpinner />}>{children}</GuestGuard>
   } else if (!guestGuard && !authGuard) {
-    return <>{children}</>
+    return <NoGuard fallback={<FallbackSpinner />}>{children}</NoGuard>
   } else {
     return <AuthGuard fallback={<FallbackSpinner />}>{children}</AuthGuard>
   }
@@ -100,6 +101,7 @@ export default function App(props: ExtendedAppProps) {
   const guestGuard = Component.guestGuard ?? false
 
   const aclAbilities = Component.acl ?? defaultACLObj
+  const permission = Component.permission ?? []
 
   const toastOptions = {
     success: {
@@ -136,7 +138,7 @@ export default function App(props: ExtendedAppProps) {
                 return (
                   <ThemeComponent settings={settings}>
                     <Guard authGuard={authGuard} guestGuard={guestGuard}>
-                      <AclGuard aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}>
+                      <AclGuard permission={permission} aclAbilities={aclAbilities} guestGuard={guestGuard} authGuard={authGuard}>
                         {getLayout(<Component {...pageProps} />)}
                       </AclGuard>
                     </Guard>
